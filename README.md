@@ -14,3 +14,5 @@ Ajouter en fin de fichier
 # nodeJS local
 127.0.1         sso-server.test
 ```
+
+Création d'un service pour le serveur central d'authentification (sso-server) => http://sso-server.test
