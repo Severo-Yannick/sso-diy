@@ -1,10 +1,21 @@
 version: "3"
 
 services:
+  # Service central et unique d'authentification  
+  sso-server:
+    image: node:18
+    environment:
+      VIRTUAL_HOST: sso-server.test
+
   adminer:
     image: adminer:4.8.1
     environment:
       VIRTUAL_HOST: adminer.test
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      VIRTUAL_HOST: whoami.test
 
   nginx-proxy:
     image: jwilder/nginx-proxy
