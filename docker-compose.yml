@@ -3,9 +3,15 @@ version: "3"
 services:
   # Service central et unique d'authentification  
   sso-server:
-    image: node:18
+    # image: node:18
+    build: server
     environment:
       VIRTUAL_HOST: sso-server.test
+      VIRTUAL_PORT: 3000
+
+  # Quelques services (sites web) "clients" du SSO
+#   sso-client1:
+#     build: .
 
   adminer:
     image: adminer:4.8.1
