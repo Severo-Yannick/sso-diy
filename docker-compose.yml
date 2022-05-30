@@ -5,9 +5,12 @@ services:
   sso-server:
     # image: node:18
     build: server
+
     environment:
       VIRTUAL_HOST: sso-server.test
       VIRTUAL_PORT: 3000
+    volumes:
+      - ./server/:/home/node/app
 
   # Quelques services (sites web) "clients" du SSO
 #   sso-client1:
@@ -29,3 +32,4 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./vhost.d:/etc/nginx/vhost.d
