@@ -14,8 +14,26 @@ app.use('/public/stylesheets', express.static(__dirname + '/public/stylesheets')
 
 app.use(express.urlencoded())
 
+app.use((req, res, next) => {
+  const cookies = req.headers.cookie
+  const cookiesArray = cookies.split('; ')
+  const parsedCookies = {}
+
+  for (let cookie of cookiesArray) {
+    const [key, value] = cookie.split('=')
+    parsedCookies[key] = [value]
+  }
+
+  req.cookies = parsedCookies
+  next()
+})
+
 app.get('/', (req, res) => {
-  res.render('login')
+  if (req.cookies.sso_session) {
+    res.render('logout')
+  } else {
+    res.render('login')
+  }
 })
 
 app.post('/api/session/login', (req, res) => {
@@ -27,7 +45,7 @@ app.post('/api/session/login', (req, res) => {
   }
 
   if (password === user.password) {
-    res.send(200)
+    res.cookie('sso_session', email).send(200)
   } else {
     res.send(500)
   }
