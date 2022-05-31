@@ -3,4 +3,4 @@ extends layout
 block content
   script(type="text/javascript").
     const token = "!{token}";
-    window.top.postMessage(token, "*")
+    window.top.postMessage(`sso_session=${token}`, "*")
