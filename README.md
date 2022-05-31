@@ -16,3 +16,5 @@ Ajouter en fin de fichier
 ```
 
 Création d'un service pour le serveur central d'authentification (sso-server) => http://sso-server.test
+
+Adminer est une application web offrant une interface graphique pour notre système de gestion de base de données => http://adminer.test/
